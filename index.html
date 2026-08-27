@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Casa Filaferro · Guest guide</title>
+<style>
+  :root{
+    --green:#1f4d3a; --green-d:#173b2c; --amber:#c8873f; --amber-d:#b06a26;
+    --terra:#b5552d; --terra-d:#9d4726; --cream:#f7f3ec; --card:#ffffff;
+    --ink:#2a2a26; --muted:#77837a; --line:#e4ddce; --fill:#b5552d;
+    --serif:"DejaVu Serif",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --maxw:680px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(31,77,58,.15);}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  img,svg{display:block;}
+  .app{max-width:var(--maxw);margin:0 auto;background:var(--cream);min-height:100vh;
+       box-shadow:0 0 40px rgba(0,0,0,.06);}
+
+  /* LANGUAGE SWITCHER */
+  .langbar{position:fixed;z-index:100;top:calc(8px + env(safe-area-inset-top));
+    right:max(8px, calc(50vw - 340px + 8px));
+    display:flex;gap:2px;background:rgba(255,255,255,.94);border:1px solid var(--line);
+    border-radius:20px;padding:3px;box-shadow:0 2px 12px rgba(0,0,0,.22);}
+  .langbar button{border:0;background:transparent;color:var(--muted);font-weight:700;
+    font-size:12px;letter-spacing:.5px;padding:6px 10px;border-radius:16px;cursor:pointer;font-family:inherit;}
+  .langbar button.on{background:var(--green);color:#fff;}
+
+  .screen{display:none;animation:fade .28s ease;}
+  .screen.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){.screen{animation:none;}html{scroll-behavior:auto;}}
+
+  .hero{background:var(--green);color:var(--cream);padding:38px 22px 30px;position:relative;
+        padding-top:calc(38px + env(safe-area-inset-top));}
+  .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#e7c79a;font-weight:700;margin:0 0 10px;}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:38px;line-height:1.05;margin:0 0 12px;}
+  .hero p{margin:0;color:#dfe9df;font-size:16px;max-width:36ch;}
+  .loc{margin-top:16px;font-size:14px;color:#bcd2c0;display:flex;align-items:center;gap:6px;}
+
+  .menu{padding:30px 18px 26px;}
+  .menu-intro{margin:0 0 16px;color:#4a5a4e;font-size:15px;}
+  .menu-intro b{color:var(--green);}
+  .grid{display:grid;gap:12px;}
+  @media(min-width:520px){.grid{grid-template-columns:1fr 1fr;}}
+  .card{display:flex;align-items:center;gap:13px;text-decoration:none;background:var(--card);
+        border:1px solid var(--line);border-left:5px solid var(--green);border-radius:14px;
+        padding:15px;transition:transform .12s ease;}
+  .card:active{transform:scale(.98);}
+  .card.amber{border-left-color:var(--amber);}.card.terra{border-left-color:var(--terra);}
+  .card .ic{flex:0 0 auto;width:42px;height:42px;border-radius:11px;background:#eef3ee;display:flex;align-items:center;justify-content:center;}
+  .card.amber .ic{background:#f7ecdb;}.card.terra .ic{background:#f6e3da;}
+  .card .t{font-weight:700;font-size:16px;color:#1f3a2c;margin:0 0 2px;}
+  .card .s{font-size:12.5px;color:var(--muted);margin:0;line-height:1.3;}
+  .card .go{margin-left:auto;color:var(--green);font-size:22px;font-weight:700;}
+  .card.amber .go{color:var(--amber);}.card.terra .go{color:var(--terra);}
+
+  .bar{position:sticky;top:0;z-index:20;background:var(--green);color:var(--cream);
+       display:flex;align-items:center;gap:12px;padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));}
+  .bar.amber{background:var(--amber-d);}.bar.terra{background:var(--terra-d);}
+  .bar .back{flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.45);
+             display:flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;font-size:20px;}
+  .bar .back:active{background:rgba(255,255,255,.15);}
+  .bar h2{font-family:var(--serif);font-size:21px;margin:0;font-weight:700;}
+  .bar .n{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#e7c79a;margin:0;}
+
+  .body{padding:20px 18px 40px;}
+  h3{color:var(--green);font-size:17px;margin:24px 0 8px;}
+  .ambertxt h3{color:var(--amber-d);}
+  p{margin:0 0 11px;}
+
+  .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin:10px 0 14px;}
+  .box.hi{border-left:5px solid var(--amber);background:#fffaf1;}
+  .box.warn{border-left:5px solid var(--terra);background:#fdf1eb;}
+  .kv{display:flex;gap:10px;padding:4px 0;flex-wrap:wrap;}
+  .kv .k{flex:0 0 130px;color:var(--muted);font-size:14px;}
+  .kv .v{flex:1 1 140px;font-weight:700;color:#1f3a2c;font-size:14.5px;}
+  .fill{color:var(--fill);}
+
+  .step{display:flex;gap:13px;margin:0 0 14px;align-items:flex-start;}
+  .step .num{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;
+             font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .step .sc b{color:#1f3a2c;}
+
+  ul.clean{margin:6px 0 12px;padding:0;list-style:none;}
+  ul.clean li{position:relative;padding:8px 0 8px 22px;border-bottom:1px solid #ece5d7;}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--amber);}
+
+  .item{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:0 0 11px;align-items:flex-start;}
+  .item .si{flex:0 0 auto;width:34px;height:34px;border-radius:9px;background:#eef3ee;display:flex;align-items:center;justify-content:center;}
+  .item .st{font-weight:700;color:#1f3a2c;font-size:15px;margin:0;}
+  .item .sd{font-size:13px;color:var(--muted);margin:3px 0 6px;}
+  .item a.map{color:var(--amber-d);font-size:13px;text-decoration:none;font-weight:700;}
+
+  .rule{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #ece5d7;}
+  .rule:last-child{border-bottom:none;}
+  .rule .yn{flex:0 0 auto;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:15px;}
+  .rule .ok{background:var(--green);}.rule .no{background:var(--terra);}
+
+  .emerg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin:8px 0 4px;}
+  .emerg .e{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 6px;text-align:center;}
+  .emerg .e .big{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--terra);margin:0;}
+  .emerg .e .lb{font-size:11px;color:var(--muted);margin:4px 0 0;text-transform:uppercase;letter-spacing:.5px;}
+
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 6px;}
+  .btn{flex:1 1 auto;min-width:150px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+       text-decoration:none;background:var(--green);color:#fff;padding:14px 18px;border-radius:30px;font-weight:700;font-size:15px;transition:transform .12s ease;}
+  .btn:active{transform:scale(.97);}
+  .btn.amber{background:var(--amber);}.btn.terra{background:var(--terra);}
+  .btn.ghost{background:#fff;color:var(--green);border:1.5px solid var(--green);}
+  .btn svg{width:18px;height:18px;}
+
+  .videos{display:grid;gap:16px;margin:6px 0 10px;}
+  .vid{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .vid .frame{position:relative;height:min(68vh,560px);aspect-ratio:9/16;max-width:100%;margin:0 auto;background:#11241b;}
+  .vid .frame iframe,.vid .frame video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:contain;background:#11241b;}
+  .vid .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#cfe0d3;text-align:center;padding:16px;background:radial-gradient(circle at 50% 40%,#24503c,#16301f);}
+  .vid .ph .play{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;}
+  .vid .cap{padding:12px 15px;font-weight:700;color:#1f3a2c;display:flex;align-items:center;gap:9px;}
+  .vid .cap .idx{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  a.playbtn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-decoration:none;color:#fff;background:radial-gradient(circle at 50% 40%,#24503c,#16301f);}
+  a.playbtn .play{width:64px;height:64px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;}
+
+  .note{font-size:13px;color:#9aa39b;font-style:italic;}
+  .footer{background:var(--green);color:#cde0d1;text-align:center;font-size:13px;padding:22px 18px calc(22px + env(safe-area-inset-bottom));}
+  .footer .r{color:#e7c79a;margin-top:4px;}
+  .footer .cin{margin-top:12px;font-size:11px;letter-spacing:.5px;color:#7fa389;}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:8px;}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="langbar" role="group" aria-label="Language">
+  <button type="button" data-lang="it" onclick="setLang('it')">IT</button>
+  <button type="button" data-lang="en" onclick="setLang('en')">EN</button>
+  <button type="button" data-lang="de" onclick="setLang('de')">DE</button>
+</div>
+
+<!-- ==================== HOME ==================== -->
+<section class="screen active" id="home">
+  <div class="hero">
+    <p class="kicker" data-i18n="kicker">Guida dell'ospite</p>
+    <h1>Casa Filaferro</h1>
+    <p data-i18n="welcome">Benvenuti! Siamo felici di ospitarvi. Qui trovi tutto ciò che ti serve per un soggiorno senza pensieri.</p>
+    <p class="loc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#bcd2c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>Via Lombardia 4 · 33015 Moggio Udinese (UD) · Friuli-Venezia Giulia</p>
+  </div>
+  <div class="menu">
+    <p class="menu-intro" data-i18n="menuIntro"><b>Tocca un pulsante</b> per andare subito alla sezione che ti interessa.</p>
+    <div class="grid">
+      <a class="card" href="#checkin">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="5"/><path d="M10.5 11.5 21 22"/><path d="m17 18 2-2"/><path d="m19 16 2-2"/></svg></span>
+        <span><p class="t" data-i18n="c1t">Check-in &amp; arrivo</p><p class="s" data-i18n="c1s">Come entrare, video, parcheggio</p></span><span class="go">›</span>
+      </a>
+      <a class="card amber" href="#casa">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8873f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.8a15 15 0 0 1 20 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+        <span><p class="t" data-i18n="c2t">Wi-Fi &amp; casa</p><p class="s" data-i18n="c2s">Rete e dotazioni della casa</p></span><span class="go">›</span>
+      </a>
+      <a class="card terra" href="#servizi">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b5552d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h2l2.4 12.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span>
+        <span><p class="t" data-i18n="c3t">Servizi del paese</p><p class="s" data-i18n="c3s">Supermercato, farmacia, medico</p></span><span class="go">›</span>
+      </a>
+      <a class="card" href="#dintorni">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span><p class="t" data-i18n="c4t">Cosa fare in zona</p><p class="s" data-i18n="c4s">Attrazioni, natura, ristoranti</p></span><span class="go">›</span>
+      </a>
+      <a class="card amber" href="#regole">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8873f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+        <span><p class="t" data-i18n="c5t">Regole della casa</p><p class="s" data-i18n="c5s">Cosa si può fare e cosa no</p></span><span class="go">›</span>
+      </a>
+      <a class="card terra" href="#checkout">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b5552d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>
+        <span><p class="t" data-i18n="c6t">Check-out &amp; partenza</p><p class="s" data-i18n="c6s">Orario e cosa fare prima di uscire</p></span><span class="go">›</span>
+      </a>
+      <a class="card" href="#contatti">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg></span>
+        <span><p class="t" data-i18n="c7t">Contatti &amp; emergenze</p><p class="s" data-i18n="c7s">Il tuo host e i numeri utili</p></span><span class="go">›</span>
+      </a>
+    </div>
+  </div>
+  <div class="footer">Casa Filaferro · Via Lombardia 4, Moggio Udinese<div class="r" data-i18n="footerR">Buon soggiorno! ✦</div><div class="cin">CIN IT030059C279BR0Y45</div></div>
+</section>
+
+<!-- ==================== 1. CHECK-IN ==================== -->
+<section class="screen" id="checkin">
+  <div class="bar">
+    <a class="back" href="#home" aria-label="Menu">‹</a>
+    <div><p class="n" data-i18n="sec01">Sezione 01</p><h2 data-i18n="ttlCheckin">Check-in &amp; arrivo</h2></div>
+  </div>
+  <div class="body">
+    <div class="box hi">
+      <div class="kv"><span class="k" data-i18n="lblAddr">Indirizzo</span><span class="v">Via Lombardia 4, 33015 Moggio Udinese (UD)</span></div>
+      <div class="kv"><span class="k" data-i18n="lblCheckinTime">Orario check-in</span><span class="v"><span data-i18n="from">dalle</span> <span class="fill" data-bind="checkin">[15:00]</span></span></div>
+      <div class="kv"><span class="k" data-i18n="lblKeybox">Codice keybox</span><span class="v">0000</span></div>
+      <div class="kv"><span class="k" data-i18n="lblParking">Parcheggio</span><span class="v" data-i18n="free">gratuito</span></div>
+    </div>
+
+    <h3 data-i18n="hVideo">Video: come fare il check-in</h3>
+    <p class="note" data-i18n="noteVideo">Tocca un video per guardarlo: come raggiungere la casa e trovare il garage.</p>
+    <div class="videos" id="videos-checkin"></div>
+
+    <h3 data-i18n="hSteps">Passo per passo</h3>
+    <div class="step"><span class="num">1</span><div class="sc" data-i18n="s1"><b>Raggiungi la casa</b> in Via Lombardia 4. Con il navigatore usa il pulsante mappa qui sotto. Parcheggio gratuito.</div></div>
+    <div class="step"><span class="num">2</span><div class="sc" data-i18n="s2"><b>Trova la keybox</b> (cassetta delle chiavi).</div></div>
+    <div class="step"><span class="num">3</span><div class="sc" data-i18n="s3"><b>Inserisci il codice 0000</b> e prendi le chiavi.</div></div>
+    <div class="step"><span class="num">4</span><div class="sc" data-i18n="s4"><b>Entra</b> dall'ingresso privato. Secondo piano. Le bici si mettono in garage.</div></div>
+    <div class="step"><span class="num">5</span><div class="sc" data-i18n="s5"><b>Sei dentro!</b> Mettiti comodo. Per qualsiasi cosa scrivimi.</div></div>
+
+    <div class="btns">
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Filaferro+Via+Lombardia+4+Moggio+Udinese"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="btnMap">Apri in mappa</span></a>
+      <a class="btn ghost" data-bind="whatsapp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 8.9 8.9 0 0 1-4-.9L3 20l1.1-3.4A8.4 8.4 0 1 1 21 11.5Z"/></svg> <span data-i18n="btnWa">Scrivimi su WhatsApp</span></a>
+    </div>
+    <div class="box warn" data-i18n="warnArrival"><b>Problemi all'arrivo?</b> Chiamami subito — trovi tutti i contatti nella sezione <b>Contatti &amp; emergenze</b>.</div>
+  </div>
+</section>
+
+<!-- ==================== 2. WIFI & CASA ==================== -->
+<section class="screen ambertxt" id="casa">
+  <div class="bar amber">
+    <a class="back" href="#home" aria-label="Menu">‹</a>
+    <div><p class="n" data-i18n="sec02">Sezione 02</p><h2 data-i18n="ttlCasa">Wi-Fi &amp; casa</h2></div>
+  </div>
+  <div class="body">
+    <h3 data-i18n="hWifi">Connessione Wi-Fi</h3>
+    <div class="box hi">
+      <div class="kv"><span class="k" data-i18n="lblSSID">Rete (SSID)</span><span class="v fill" data-bind="wifiSSID">[Nome_Rete_WiFi]</span></div>
+      <div class="kv"><span class="k">Password</span><span class="v fill" data-bind="wifiPass">[password-wifi]</span></div>
+    </div>
+    <h3 data-i18n="hHome">Come funziona la casa</h3>
+    <ul class="clean">
+      <li data-i18n="li1"><b>Cucina attrezzata:</b> forno, microonde, piano cottura e stoviglie.</li>
+      <li data-i18n="li2"><b>Bagno:</b> vasca con idromassaggio e asciugacapelli.</li>
+      <li data-i18n="li3"><b>Lavatrice:</b> disponibile in cantina.</li>
+      <li data-i18n="li4"><b>Balcone:</b> con vista sulle montagne, perfetto per il relax.</li>
+      <li data-i18n="li5"><b>Bici:</b> custodibili in garage.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== 3. SERVIZI ==================== -->
+<section class="screen" id="servizi">
+  <div class="bar terra">
+    <a class="back" href="#home" aria-label="Menu">‹</a>
+    <div><p class="n" data-i18n="sec03">Sezione 03</p><h2 data-i18n="ttlServizi">Servizi del paese</h2></div>
+  </div>
+  <div class="body">
+    <p data-i18n="srvIntro">I servizi essenziali, tutti a pochi minuti. Tocca <b>“Mappa”</b> per le indicazioni.</p>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h2l2.4 12.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span>
+      <div><p class="st" data-i18n="nAlim">Alimentari Filaferro e family</p><p class="sd" data-i18n="dAlim">Piazza Uffici 19 · prodotti tipici, formaggi e salumi · 0433 51131</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Filaferro+e+family+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b5552d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h2l2.4 12.3a2 2 0 0 0 2 1.7h9.7a2 2 0 0 0 2-1.6L23 6H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></span>
+      <div><p class="st" data-i18n="nSuper">Supermercato Maxì</p><p class="sd" data-i18n="dSuper">Via della Chiesa 8/A · lun–sab · 0433 51132</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Maxi+supermercato+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+      <div><p class="st" data-i18n="nFarm">Farmacia San Gallo</p><p class="sd" data-i18n="dFarm">Via della Chiesa 13/b · lun–sab 8:30–12:30 / 15:30–19:30 · 0433 51130</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Farmacia+San+Gallo+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b5552d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M11 10v6M8 13h6"/><rect x="4" y="6" width="16" height="16" rx="2"/></svg></span>
+      <div><p class="st" data-i18n="nMed">Poliambulatorio · Guardia medica</p><p class="sd" data-i18n="dMed">Via G. Ermolli 28 · 0433 51341 (notti e festivi)</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Poliambulatorio+Guardia+medica+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
+      <div><p class="st" data-i18n="nBank">Banca &amp; Bancomat</p><p class="sd">Crédit Agricole, Via della Chiesa 9/A · UniCredit ATM 24h, Piazza Uffici 9</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=bancomat+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b5552d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h10M7 14h6"/></svg></span>
+      <div><p class="st" data-i18n="nPost">Ufficio postale</p><p class="sd">Piazzetta Sandro Pertini 1/A · 0433 50112</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Poste+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10a4 4 0 0 1-8 0V4"/><path d="M18 8h1a2 2 0 0 1 0 4h-1"/><path d="M4 20h12"/></svg></span>
+      <div><p class="st">Bar Merlino</p><p class="sd" data-i18n="dBar">Via della Chiesa 22 · caffè, aperitivi e panini · 0433 51834</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Bar+Merlino+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b5552d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"/><path d="M13 10h3l3 3v6a1 1 0 0 1-2 0"/><circle cx="7.5" cy="9" r="1.5"/></svg></span>
+      <div><p class="st" data-i18n="nFuel">Distributore carburante</p><p class="sd" data-i18n="dFuel">Area di servizio Tamoil, Campiolo (verso l'A23) · 6:00–22:00</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=distributore+carburante+Moggio+Udinese+Campiolo" data-i18n="map">→ Mappa</a></div></div>
+
+    <p class="note" data-i18n="srvNote">Alcuni negozi fanno orario spezzato con chiusura pomeridiana/domenicale — verifica prima di uscire.</p>
+  </div>
+</section>
+
+<!-- ==================== 4. COSA FARE ==================== -->
+<section class="screen" id="dintorni">
+  <div class="bar">
+    <a class="back" href="#home" aria-label="Menu">‹</a>
+    <div><p class="n" data-i18n="sec04">Sezione 04</p><h2 data-i18n="ttlDintorni">Cosa fare in zona</h2></div>
+  </div>
+  <div class="body">
+    <h3 data-i18n="hNonPerdere">Da non perdere</h3>
+    <ul class="clean">
+      <li data-i18n="a1"><b>Abbazia di San Gallo</b> — l'antica abbazia benedettina che domina il paese, con vista sul ponte e sul fiume Fella. Il simbolo di Moggio.</li>
+      <li data-i18n="a2"><b>Ciclovia Alpe Adria (FVG1)</b> — la ciclabile Salisburgo–Grado passa a pochi minuti; pianeggiante e panoramica. Bici in garage.</li>
+      <li data-i18n="a3"><b>Parco Naturale delle Prealpi Giulie</b> — sentieri ed escursioni; Moggio è comune “porta” del parco.</li>
+      <li data-i18n="a4"><b>Venzone</b> (~10 km) — borgo medievale murato tra i più belli d'Italia, con il Duomo e i campi di lavanda.</li>
+      <li data-i18n="a5"><b>Terme di Arta</b> (~27 km) — terme e benessere per una giornata di relax.</li>
+      <li data-i18n="a6"><b>Bagno nel fiume Fella</b> — d'estate ci sono begli spot: chiedimi i punti migliori!</li>
+    </ul>
+    <h3 data-i18n="hEat">Dove mangiare</h3>
+    <div class="item"><span class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b5552d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></span>
+      <div><p class="st">Ciao Ciao Pizzeria Ristorante</p><p class="sd" data-i18n="dCiao">Via G. Ermolli 6 · ottima pizza, prezzi onesti · chiuso lunedì · 0433 51539</p><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=Ciao+Ciao+Pizzeria+Moggio+Udinese" data-i18n="map">→ Mappa</a></div></div>
+  </div>
+</section>
+
+<!-- ==================== 5. REGOLE ==================== -->
+<section class="screen ambertxt" id="regole">
+  <div class="bar amber">
+    <a class="back" href="#home" aria-label="Menu">‹</a>
+    <div><p class="n" data-i18n="sec05">Sezione 05</p><h2 data-i18n="ttlRegole">Regole della casa</h2></div>
+  </div>
+  <div class="body">
+    <p data-i18n="regIntro">Poche regole semplici per far stare bene tutti — te e i vicini. Grazie!</p>
+    <div class="box">
+      <div class="rule"><span class="yn no">✕</span><div data-i18n="r1"><b>Non si fuma nell'appartamento.</b> Se fumi, usa il balcone e smaltisci i mozziconi.</div></div>
+      <div class="rule"><span class="yn no">✕</span><div data-i18n="r2"><b>Niente feste o eventi.</b> Silenzio dalle <span class="fill">[22:00]</span> alle <span class="fill">[07:00]</span> per rispetto dei vicini.</div></div>
+      <div class="rule"><span class="yn no">✕</span><div data-i18n="r3"><b>Animali non ammessi.</b> Purtroppo non è possibile ospitare animali domestici.</div></div>
+      <div class="rule"><span class="yn ok">✓</span><div data-i18n="r4"><b>Numero ospiti:</b> massimo 2 persone, come da prenotazione.</div></div>
+      <div class="rule"><span class="yn ok">✓</span><div data-i18n="r5"><b>Tratta la casa con cura.</b> Se qualcosa si rompe capita, avvisami senza problemi.</div></div>
+      <div class="rule"><span class="yn ok">✓</span><div data-i18n="r6"><b>Risparmia energia:</b> spegni luci e riscaldamento quando esci.</div></div>
+    </div>
+    <p class="note" data-i18n="regNote">Registrazione ospiti: per legge devo registrare i documenti di tutti gli ospiti. Te li chiederò all'arrivo.</p>
+  </div>
+</section>
+
+<!-- ==================== 6. CHECK-OUT ==================== -->
+<section class="screen" id="checkout">
+  <div class="bar terra">
+    <a class="back" href="#home" aria-label="Menu">‹</a>
+    <div><p class="n" data-i18n="sec06">Sezione 06</p><h2 data-i18n="ttlCheckout">Check-out &amp; partenza</h2></div>
+  </div>
+  <div class="body">
+    <div class="box hi">
+      <div class="kv"><span class="k" data-i18n="lblCheckoutTime">Orario check-out</span><span class="v"><span data-i18n="by">entro le</span> <span class="fill" data-bind="checkout">[10:00]</span></span></div>
+      <div class="kv"><span class="k" data-i18n="lblKeys">Chiavi</span><span class="v" data-i18n="valKeys">rimettile nella keybox (codice 0000)</span></div>
+    </div>
+    <h3 data-i18n="hBefore">Prima di uscire</h3>
+    <div class="step"><span class="num">1</span><div class="sc" data-i18n="co1">Chiudi bene <b>finestre e porte</b> e spegni le luci.</div></div>
+    <div class="step"><span class="num">2</span><div class="sc" data-i18n="co2">Butta i <b>rifiuti</b> negli appositi bidoni.</div></div>
+    <div class="step"><span class="num">3</span><div class="sc" data-i18n="co3">Rimetti le <b>chiavi</b> nella keybox.</div></div>
+    <div class="step"><span class="num">4</span><div class="sc" data-i18n="co4">Scrivimi un messaggio quando sei uscito.</div></div>
+    <div class="box" data-i18n="thanks"><b>Grazie di cuore per essere stato nostro ospite!</b> Se ti sei trovato bene, una recensione positiva ci aiuta tantissimo. Torna a trovarci quando vuoi.</div>
+    <div class="btns"><a class="btn terra" data-bind="whatsapp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 8.9 8.9 0 0 1-4-.9L3 20l1.1-3.4A8.4 8.4 0 1 1 21 11.5Z"/></svg> <span data-i18n="btnLeft">Avvisami della partenza</span></a></div>
+  </div>
+</section>
+
+<!-- ==================== 7. CONTATTI ==================== -->
+<section class="screen" id="contatti">
+  <div class="bar">
+    <a class="back" href="#home" aria-label="Menu">‹</a>
+    <div><p class="n" data-i18n="sec07">Sezione 07</p><h2 data-i18n="ttlContatti">Contatti &amp; emergenze</h2></div>
+  </div>
+  <div class="body">
+    <h3 data-i18n="hHost">Il tuo host</h3>
+    <div class="box hi">
+      <div class="kv"><span class="k" data-i18n="lblName">Nome</span><span class="v fill" data-bind="hostName">[Il tuo nome]</span></div>
+      <div class="kv"><span class="k" data-i18n="lblPhone">Telefono</span><span class="v fill" data-bind="phoneText">[+39 XXX XXX XXXX]</span></div>
+      <div class="kv"><span class="k" data-i18n="lblEmail">Email</span><span class="v fill" data-bind="email">[email]</span></div>
+    </div>
+    <div class="btns">
+      <a class="btn" data-bind="whatsapp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 8.9 8.9 0 0 1-4-.9L3 20l1.1-3.4A8.4 8.4 0 1 1 21 11.5Z"/></svg> WhatsApp</a>
+      <a class="btn ghost" data-bind="call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg> <span data-i18n="btnCall">Chiama ora</span></a>
+    </div>
+    <h3 data-i18n="hEmerg">Numeri di emergenza</h3>
+    <div class="emerg">
+      <div class="e"><p class="big">112</p><p class="lb" data-i18n="em1">Emergenze</p></div>
+      <div class="e"><p class="big">118</p><p class="lb" data-i18n="em2">Ambulanza</p></div>
+      <div class="e"><p class="big">115</p><p class="lb" data-i18n="em3">Vigili del fuoco</p></div>
+    </div>
+    <p class="note" data-i18n="emergNote">Il <b>112</b> è il numero unico europeo, gratuito anche da cellulare senza credito. Guardia medica (notti/festivi): 0433 51341. Farmacia di turno: cartello alla Farmacia San Gallo.</p>
+    <div class="box warn" data-i18n="warnFault"><b>Guasti in casa</b> (acqua, luce, gas): contattami prima al numero sopra. Contatore/valvole: [posizione].</div>
+  </div>
+</section>
+
+</div>
+
+<script>
+/* ============================================================
+   IMPOSTAZIONI — modifica SOLO i valori qui sotto.
+   ============================================================ */
+const CONFIG = {
+  phone:    "+39 351 374 3824",
+  whatsapp: "393513743824",
+  email:    "janisfilaferro@gmail.com",
+  hostName: "Janis",
+  wifiSSID: "CASA FILAFERRO",
+  wifiPass: "123456789",
+  checkin:  "",            // es. "15:00"
+  checkout: "",            // es. "10:00"
+
+  /* Lingua di partenza: "en" inglese, "it" italiano, "de" tedesco.
+     (Se il telefono dell'ospite è in italiano o tedesco, parte in quella lingua.) */
+  defaultLang: "en",
+
+  /* VIDEO DEL CHECK-IN — il titolo (in italiano) va nel campo "titolo";
+     le traduzioni EN/DE sono già pronte più sotto (vid1/vid2). */
+  videoCheckin: [
+    { titolo: "Come arrivare e trovare l'ingresso",  url: "video-arrivo.mp4" },
+    { titolo: "Come trovare il garage",              url: "video-garage.mp4" }
+  ]
+};
+
+/* ============================================================
+   TRADUZIONI  ·  l'italiano è nel testo della pagina.
+   ============================================================ */
+const I18N = {
+  en: {
+    kicker:"Guest guide",
+    welcome:"Welcome! We're delighted to have you. Here you'll find everything you need for a carefree stay.",
+    menuIntro:"<b>Tap a button</b> to jump straight to the section you need.",
+    c1t:"Check-in &amp; arrival", c1s:"How to get in, videos, parking",
+    c2t:"Wi-Fi &amp; home", c2s:"Wi-Fi and home features",
+    c3t:"Village services", c3s:"Supermarket, pharmacy, doctor",
+    c4t:"Things to do nearby", c4s:"Attractions, nature, restaurants",
+    c5t:"House rules", c5s:"What's allowed and what isn't",
+    c6t:"Check-out &amp; departure", c6s:"Time and what to do before leaving",
+    c7t:"Contacts &amp; emergencies", c7s:"Your host and useful numbers",
+    footerR:"Enjoy your stay! ✦",
+    sec01:"Section 01", ttlCheckin:"Check-in &amp; arrival",
+    lblAddr:"Address", lblCheckinTime:"Check-in time", from:"from",
+    lblKeybox:"Keybox code", lblParking:"Parking", free:"free",
+    hVideo:"Video: how to check in",
+    noteVideo:"Tap a video to watch: how to reach the house and find the garage.",
+    vid1:"How to arrive and find the entrance", vid2:"How to find the garage",
+    hSteps:"Step by step",
+    s1:"<b>Reach the house</b> at Via Lombardia 4. Use the map button below for navigation. Free parking.",
+    s2:"<b>Find the keybox</b> (key safe).",
+    s3:"<b>Enter the code 0000</b> and take the keys.",
+    s4:"<b>Go in</b> through the private entrance. Second floor. Bikes go in the garage.",
+    s5:"<b>You're in!</b> Make yourself at home. Message me anytime.",
+    btnMap:"Open in maps", btnWa:"Message me on WhatsApp",
+    warnArrival:"<b>Trouble on arrival?</b> Call me right away — all contacts are in the <b>Contacts &amp; emergencies</b> section.",
+    sec02:"Section 02", ttlCasa:"Wi-Fi &amp; home",
+    hWifi:"Wi-Fi connection", lblSSID:"Network (SSID)",
+    hHome:"How the home works",
+    li1:"<b>Equipped kitchen:</b> oven, microwave, hob and dishware.",
+    li2:"<b>Bathroom:</b> whirlpool tub and hairdryer.",
+    li3:"<b>Washing machine:</b> available in the cellar.",
+    li4:"<b>Balcony:</b> with mountain views, perfect for relaxing.",
+    li5:"<b>Bikes:</b> can be stored in the garage.",
+    sec03:"Section 03", ttlServizi:"Village services",
+    srvIntro:"The essential services, all a few minutes away. Tap <b>“Map”</b> for directions.",
+    nAlim:"Grocery – Filaferro e family", dAlim:"Piazza Uffici 19 · local products, cheese &amp; cured meats · 0433 51131",
+    nSuper:"Maxì Supermarket", dSuper:"Via della Chiesa 8/A · Mon–Sat · 0433 51132",
+    nFarm:"San Gallo Pharmacy", dFarm:"Via della Chiesa 13/b · Mon–Sat 8:30–12:30 / 15:30–19:30 · 0433 51130",
+    nMed:"Clinic · After-hours doctor", dMed:"Via G. Ermolli 28 · 0433 51341 (nights &amp; holidays)",
+    nBank:"Bank &amp; ATM",
+    nPost:"Post office",
+    dBar:"Via della Chiesa 22 · coffee, aperitifs &amp; sandwiches · 0433 51834",
+    nFuel:"Fuel station", dFuel:"Tamoil service area, Campiolo (toward the A23) · 6:00–22:00",
+    srvNote:"Some shops close for the afternoon break and on Sundays — check before you head out.",
+    map:"→ Map",
+    sec04:"Section 04", ttlDintorni:"Things to do nearby",
+    hNonPerdere:"Don't miss",
+    a1:"<b>San Gallo Abbey</b> — the ancient Benedictine abbey overlooking the village, with views of the bridge and the Fella river. The symbol of Moggio.",
+    a2:"<b>Alpe Adria Cycle Path (FVG1)</b> — the Salzburg–Grado route passes a few minutes away; flat and scenic. Bikes in the garage.",
+    a3:"<b>Julian Prealps Nature Park</b> — trails and hikes; Moggio is a “gateway” town to the park.",
+    a4:"<b>Venzone</b> (~10 km) — a walled medieval town, one of Italy's most beautiful, with its cathedral and lavender fields.",
+    a5:"<b>Arta Thermal Baths</b> (~27 km) — spa and wellness for a relaxing day.",
+    a6:"<b>Swimming in the Fella river</b> — in summer there are lovely spots: ask me for the best ones!",
+    hEat:"Where to eat",
+    dCiao:"Via G. Ermolli 6 · great pizza, fair prices · closed Mondays · 0433 51539",
+    sec05:"Section 05", ttlRegole:"House rules",
+    regIntro:"A few simple rules so everyone feels good — you and the neighbours. Thank you!",
+    r1:"<b>No smoking in the apartment.</b> If you smoke, use the balcony and dispose of the butts.",
+    r2:"<b>No parties or events.</b> Quiet hours from <span class=\"fill\">[22:00]</span> to <span class=\"fill\">[07:00]</span> out of respect for the neighbours.",
+    r3:"<b>No pets allowed.</b> Unfortunately we can't host pets.",
+    r4:"<b>Number of guests:</b> maximum 2 people, as booked.",
+    r5:"<b>Treat the home with care.</b> If something breaks, it happens — just let me know.",
+    r6:"<b>Save energy:</b> turn off lights and heating when you go out.",
+    regNote:"Guest registration: by law I must register every guest's ID. I'll ask for them on arrival.",
+    sec06:"Section 06", ttlCheckout:"Check-out &amp; departure",
+    lblCheckoutTime:"Check-out time", by:"by", lblKeys:"Keys",
+    valKeys:"put them back in the keybox (code 0000)",
+    hBefore:"Before you leave",
+    co1:"Close <b>windows and doors</b> properly and turn off the lights.",
+    co2:"Put the <b>rubbish</b> in the proper bins.",
+    co3:"Put the <b>keys</b> back in the keybox.",
+    co4:"Send me a message once you've left.",
+    thanks:"<b>Thank you so much for staying with us!</b> If you enjoyed it, a positive review helps us a lot. Come back anytime.",
+    btnLeft:"Let me know you've left",
+    sec07:"Section 07", ttlContatti:"Contacts &amp; emergencies",
+    hHost:"Your host", lblName:"Name", lblPhone:"Phone", lblEmail:"Email",
+    btnCall:"Call now", hEmerg:"Emergency numbers",
+    em1:"Emergency", em2:"Ambulance", em3:"Fire brigade",
+    emergNote:"<b>112</b> is the single European emergency number, free even from a mobile with no credit. After-hours doctor (nights/holidays): 0433 51341. On-duty pharmacy: see the notice at Farmacia San Gallo.",
+    warnFault:"<b>Problems in the home</b> (water, electricity, gas): contact me first at the number above. Meter/valves: [location]."
+  },
+  de: {
+    kicker:"Gäste-Guide",
+    welcome:"Willkommen! Wir freuen uns, Sie zu Gast zu haben. Hier finden Sie alles für einen sorglosen Aufenthalt.",
+    menuIntro:"<b>Tippen Sie auf eine Schaltfläche</b>, um direkt zum gewünschten Abschnitt zu springen.",
+    c1t:"Check-in &amp; Anreise", c1s:"Zugang, Videos, Parkplatz",
+    c2t:"WLAN &amp; Wohnung", c2s:"WLAN und Ausstattung",
+    c3t:"Dienste im Ort", c3s:"Supermarkt, Apotheke, Arzt",
+    c4t:"Aktivitäten in der Umgebung", c4s:"Sehenswürdigkeiten, Natur, Restaurants",
+    c5t:"Hausordnung", c5s:"Was erlaubt ist und was nicht",
+    c6t:"Check-out &amp; Abreise", c6s:"Uhrzeit und was vor der Abreise zu tun ist",
+    c7t:"Kontakt &amp; Notfälle", c7s:"Ihr Gastgeber und nützliche Nummern",
+    footerR:"Schönen Aufenthalt! ✦",
+    sec01:"Abschnitt 01", ttlCheckin:"Check-in &amp; Anreise",
+    lblAddr:"Adresse", lblCheckinTime:"Check-in-Zeit", from:"ab",
+    lblKeybox:"Schlüsseltresor-Code", lblParking:"Parkplatz", free:"kostenlos",
+    hVideo:"Video: So gelingt der Check-in",
+    noteVideo:"Tippen Sie auf ein Video: So finden Sie das Haus und die Garage.",
+    vid1:"Anfahrt und Eingang finden", vid2:"So finden Sie die Garage",
+    hSteps:"Schritt für Schritt",
+    s1:"<b>Erreichen Sie das Haus</b> in der Via Lombardia 4. Nutzen Sie zur Navigation die Karten-Schaltfläche unten. Kostenloser Parkplatz.",
+    s2:"<b>Finden Sie den Schlüsseltresor</b> (Keybox).",
+    s3:"<b>Geben Sie den Code 0000 ein</b> und nehmen Sie die Schlüssel.",
+    s4:"<b>Treten Sie ein</b> durch den privaten Eingang. Zweiter Stock. Fahrräder kommen in die Garage.",
+    s5:"<b>Sie sind drin!</b> Machen Sie es sich gemütlich. Schreiben Sie mir jederzeit.",
+    btnMap:"In Karte öffnen", btnWa:"Auf WhatsApp schreiben",
+    warnArrival:"<b>Probleme bei der Ankunft?</b> Rufen Sie mich sofort an — alle Kontakte finden Sie im Abschnitt <b>Kontakt &amp; Notfälle</b>.",
+    sec02:"Abschnitt 02", ttlCasa:"WLAN &amp; Wohnung",
+    hWifi:"WLAN-Verbindung", lblSSID:"Netzwerk (SSID)",
+    hHome:"Wie die Wohnung funktioniert",
+    li1:"<b>Ausgestattete Küche:</b> Ofen, Mikrowelle, Kochfeld und Geschirr.",
+    li2:"<b>Bad:</b> Whirlpool-Wanne und Haartrockner.",
+    li3:"<b>Waschmaschine:</b> im Keller verfügbar.",
+    li4:"<b>Balkon:</b> mit Bergblick, perfekt zum Entspannen.",
+    li5:"<b>Fahrräder:</b> können in der Garage abgestellt werden.",
+    sec03:"Abschnitt 03", ttlServizi:"Dienste im Ort",
+    srvIntro:"Die wichtigsten Dienste, alle wenige Minuten entfernt. Tippen Sie auf <b>„Karte“</b> für die Route.",
+    nAlim:"Lebensmittel – Filaferro e family", dAlim:"Piazza Uffici 19 · regionale Produkte, Käse &amp; Wurstwaren · 0433 51131",
+    nSuper:"Supermarkt Maxì", dSuper:"Via della Chiesa 8/A · Mo–Sa · 0433 51132",
+    nFarm:"Apotheke San Gallo", dFarm:"Via della Chiesa 13/b · Mo–Sa 8:30–12:30 / 15:30–19:30 · 0433 51130",
+    nMed:"Ambulanz · Ärztlicher Notdienst", dMed:"Via G. Ermolli 28 · 0433 51341 (nachts &amp; feiertags)",
+    nBank:"Bank &amp; Geldautomat",
+    nPost:"Postamt",
+    dBar:"Via della Chiesa 22 · Kaffee, Aperitifs &amp; Sandwiches · 0433 51834",
+    nFuel:"Tankstelle", dFuel:"Tamoil-Tankstelle, Campiolo (Richtung A23) · 6:00–22:00",
+    srvNote:"Manche Geschäfte haben Mittagspause und sonntags geschlossen — prüfen Sie es vor dem Losgehen.",
+    map:"→ Karte",
+    sec04:"Abschnitt 04", ttlDintorni:"Aktivitäten in der Umgebung",
+    hNonPerdere:"Nicht verpassen",
+    a1:"<b>Abtei San Gallo</b> — die alte Benediktinerabtei über dem Ort, mit Blick auf die Brücke und den Fluss Fella. Das Wahrzeichen von Moggio.",
+    a2:"<b>Alpe-Adria-Radweg (FVG1)</b> — die Route Salzburg–Grado verläuft wenige Minuten entfernt; flach und landschaftlich reizvoll. Fahrräder in der Garage.",
+    a3:"<b>Naturpark Julische Voralpen</b> — Wege und Wanderungen; Moggio ist ein „Tor“ zum Park.",
+    a4:"<b>Venzone</b> (~10 km) — eine mittelalterliche Stadtmauer-Stadt, eine der schönsten Italiens, mit Dom und Lavendelfeldern.",
+    a5:"<b>Thermen von Arta</b> (~27 km) — Thermen und Wellness für einen erholsamen Tag.",
+    a6:"<b>Baden im Fluss Fella</b> — im Sommer gibt es schöne Stellen: fragen Sie mich nach den besten!",
+    hEat:"Wo essen",
+    dCiao:"Via G. Ermolli 6 · gute Pizza, faire Preise · montags geschlossen · 0433 51539",
+    sec05:"Abschnitt 05", ttlRegole:"Hausordnung",
+    regIntro:"Ein paar einfache Regeln, damit sich alle wohlfühlen — Sie und die Nachbarn. Danke!",
+    r1:"<b>Rauchen in der Wohnung verboten.</b> Wenn Sie rauchen, nutzen Sie den Balkon und entsorgen Sie die Kippen.",
+    r2:"<b>Keine Partys oder Veranstaltungen.</b> Ruhezeit von <span class=\"fill\">[22:00]</span> bis <span class=\"fill\">[07:00]</span> aus Rücksicht auf die Nachbarn.",
+    r3:"<b>Keine Haustiere erlaubt.</b> Leider können wir keine Haustiere aufnehmen.",
+    r4:"<b>Anzahl der Gäste:</b> maximal 2 Personen, wie gebucht.",
+    r5:"<b>Behandeln Sie die Wohnung sorgsam.</b> Wenn etwas kaputtgeht, kann das passieren — sagen Sie mir einfach Bescheid.",
+    r6:"<b>Energie sparen:</b> Licht und Heizung ausschalten, wenn Sie gehen.",
+    regNote:"Gästeregistrierung: Gesetzlich muss ich die Ausweise aller Gäste erfassen. Ich frage bei der Ankunft danach.",
+    sec06:"Abschnitt 06", ttlCheckout:"Check-out &amp; Abreise",
+    lblCheckoutTime:"Check-out-Zeit", by:"bis", lblKeys:"Schlüssel",
+    valKeys:"zurück in den Schlüsseltresor (Code 0000)",
+    hBefore:"Vor der Abreise",
+    co1:"Schließen Sie <b>Fenster und Türen</b> gut und schalten Sie das Licht aus.",
+    co2:"Werfen Sie den <b>Müll</b> in die entsprechenden Tonnen.",
+    co3:"Legen Sie die <b>Schlüssel</b> zurück in den Schlüsseltresor.",
+    co4:"Schreiben Sie mir eine Nachricht, sobald Sie weg sind.",
+    thanks:"<b>Herzlichen Dank für Ihren Aufenthalt bei uns!</b> Wenn es Ihnen gefallen hat, hilft uns eine positive Bewertung sehr. Kommen Sie jederzeit wieder.",
+    btnLeft:"Abreise mitteilen",
+    sec07:"Abschnitt 07", ttlContatti:"Kontakt &amp; Notfälle",
+    hHost:"Ihr Gastgeber", lblName:"Name", lblPhone:"Telefon", lblEmail:"E-Mail",
+    btnCall:"Jetzt anrufen", hEmerg:"Notrufnummern",
+    em1:"Notruf", em2:"Krankenwagen", em3:"Feuerwehr",
+    emergNote:"Die <b>112</b> ist die einheitliche europäische Notrufnummer, auch vom Handy ohne Guthaben kostenlos. Ärztlicher Notdienst (nachts/feiertags): 0433 51341. Notdienst-Apotheke: Aushang an der Apotheke San Gallo.",
+    warnFault:"<b>Störungen in der Wohnung</b> (Wasser, Strom, Gas): kontaktieren Sie mich zuerst unter der obigen Nummer. Zähler/Ventile: [Ort]."
+  }
+};
+
+/* ---------- valori dell'host / Wi-Fi ---------- */
+(function(){
+  const set=(s,t)=>document.querySelectorAll(s).forEach(el=>{if(t)el.textContent=t;});
+  if(CONFIG.hostName) set('[data-bind="hostName"]',CONFIG.hostName);
+  if(CONFIG.email)    set('[data-bind="email"]',CONFIG.email);
+  if(CONFIG.wifiSSID) set('[data-bind="wifiSSID"]',CONFIG.wifiSSID);
+  if(CONFIG.wifiPass) set('[data-bind="wifiPass"]',CONFIG.wifiPass);
+  if(CONFIG.checkin)  set('[data-bind="checkin"]',CONFIG.checkin);
+  if(CONFIG.checkout) set('[data-bind="checkout"]',CONFIG.checkout);
+  if(CONFIG.phone)    set('[data-bind="phoneText"]',CONFIG.phone);
+  const wa=CONFIG.whatsapp?("https://wa.me/"+CONFIG.whatsapp):"#contatti";
+  document.querySelectorAll('[data-bind="whatsapp"]').forEach(a=>a.setAttribute('href',wa));
+  const tel=CONFIG.phone?("tel:"+CONFIG.phone.replace(/\s/g,'')):"#contatti";
+  document.querySelectorAll('[data-bind="call"]').forEach(a=>a.setAttribute('href',tel));
+})();
+
+/* ---------- video ---------- */
+function embed(url){
+  if(!url) return null; let m;
+  if((m=url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/)))
+    return {type:'iframe',src:'https://www.youtube.com/embed/'+m[1]};
+  if((m=url.match(/vimeo\.com\/(?:video\/)?(\d+)/)))
+    return {type:'iframe',src:'https://player.vimeo.com/video/'+m[1]};
+  if((m=url.match(/drive\.google\.com\/file\/d\/([\w-]+)/)))
+    return {type:'iframe',src:'https://drive.google.com/file/d/'+m[1]+'/preview'};
+  if(/\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(url)) return {type:'video',src:url};
+  return {type:'link',src:url};
+}
+(function(){
+  const box=document.getElementById('videos-checkin'); if(!box) return;
+  const playSVG='<svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>';
+  CONFIG.videoCheckin.forEach((v,i)=>{
+    const e=embed(v.url); let frame;
+    if(!e){ frame='<div class="ph"><div class="play">'+playSVG+'</div><span>Video</span></div>'; }
+    else if(e.type==='iframe'){ frame='<iframe src="'+e.src+'" title="'+v.titolo+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>'; }
+    else if(e.type==='video'){ frame='<video controls preload="metadata" playsinline src="'+e.src+'"></video>'; }
+    else { frame='<a class="playbtn" href="'+e.src+'" target="_blank" rel="noopener"><span class="play">'+playSVG+'</span><span>▶</span></a>'; }
+    box.insertAdjacentHTML('beforeend',
+      '<div class="vid"><div class="frame">'+frame+'</div>'+
+      '<div class="cap"><span class="idx">'+(i+1)+'</span><span data-i18n="vid'+(i+1)+'">'+v.titolo+'</span></div></div>');
+  });
+})();
+
+/* ---------- lingua (IT/EN/DE) ---------- */
+const I18N_NODES=Array.from(document.querySelectorAll('[data-i18n]'));
+const I18N_ORIG=new Map(); I18N_NODES.forEach(n=>I18N_ORIG.set(n,n.innerHTML));
+function setLang(lang){
+  document.documentElement.lang=lang;
+  I18N_NODES.forEach(n=>{
+    const k=n.getAttribute('data-i18n');
+    if(lang==='it'){ n.innerHTML=I18N_ORIG.get(n); }
+    else { const d=I18N[lang]; n.innerHTML=(d&&d[k]!=null)?d[k]:I18N_ORIG.get(n); }
+  });
+  document.querySelectorAll('.langbar button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
+}
+(function(){
+  let lang=CONFIG.defaultLang||'en';
+  const b=(navigator.language||'').slice(0,2).toLowerCase();
+  if(b==='it'||b==='de') lang=b;         // se il telefono è in IT o DE, parte in quella lingua
+  setLang(lang);
+})();
+
+/* ---------- navigazione a schermate ---------- */
+(function(){
+  const screens=Array.from(document.querySelectorAll('.screen'));
+  function show(id){
+    const t=document.getElementById(id)||document.getElementById('home');
+    screens.forEach(s=>s.classList.toggle('active',s===t));
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',()=>show(location.hash.slice(1)||'home'));
+  show(location.hash.slice(1)||'home');
+})();
+</script>
+</body>
+</html>
