@@ -216,7 +216,7 @@
       <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Filaferro+Via+Lombardia+4+Moggio+Udinese"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="btnMap">Apri in mappa</span></a>
       <a class="btn ghost" data-bind="whatsapp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 8.9 8.9 0 0 1-4-.9L3 20l1.1-3.4A8.4 8.4 0 1 1 21 11.5Z"/></svg> <span data-i18n="btnWa">Scrivimi su WhatsApp</span></a>
     </div>
-    <div class="box warn" data-i18n="warnArrival"><b>Problemi all'arrivo?</b> Chiamami subito — trovi tutti i contatti nella sezione <b>Contatti &amp; emergenze</b>.</div>
+    <div class="box warn" data-i18n="warnArrival"><b>Problemi all'arrivo?</b> Scrivimi subito — trovi tutti i contatti nella sezione <b>Contatti &amp; emergenze</b>.</div>
   </div>
 </section>
 
@@ -353,12 +353,10 @@
     <h3 data-i18n="hHost">Il tuo host</h3>
     <div class="box hi">
       <div class="kv"><span class="k" data-i18n="lblName">Nome</span><span class="v fill" data-bind="hostName">[Il tuo nome]</span></div>
-      <div class="kv"><span class="k" data-i18n="lblPhone">Telefono</span><span class="v fill" data-bind="phoneText">[+39 XXX XXX XXXX]</span></div>
       <div class="kv"><span class="k" data-i18n="lblEmail">Email</span><span class="v fill" data-bind="email">[email]</span></div>
     </div>
     <div class="btns">
       <a class="btn" data-bind="whatsapp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 8.9 8.9 0 0 1-4-.9L3 20l1.1-3.4A8.4 8.4 0 1 1 21 11.5Z"/></svg> WhatsApp</a>
-      <a class="btn ghost" data-bind="call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg> <span data-i18n="btnCall">Chiama ora</span></a>
     </div>
     <h3 data-i18n="hEmerg">Numeri di emergenza</h3>
     <div class="emerg">
@@ -367,7 +365,7 @@
       <div class="e"><p class="big">115</p><p class="lb" data-i18n="em3">Vigili del fuoco</p></div>
     </div>
     <p class="note" data-i18n="emergNote">Il <b>112</b> è il numero unico europeo, gratuito anche da cellulare senza credito. Guardia medica (notti/festivi): 0433 51341. Farmacia di turno: cartello alla Farmacia San Gallo.</p>
-    <div class="box warn" data-i18n="warnFault"><b>Guasti in casa</b> (acqua, luce, gas): contattami prima al numero sopra. Contatore/valvole: [posizione].</div>
+    <div class="box warn" data-i18n="warnFault"><b>Guasti in casa</b> (acqua, luce, gas): scrivimi subito.</div>
   </div>
 </section>
 
@@ -428,7 +426,7 @@ const I18N = {
     s4:"<b>Go in</b> through the private entrance. Second floor. Bikes go in the garage.",
     s5:"<b>You're in!</b> Make yourself at home. Message me anytime.",
     btnMap:"Open in maps", btnWa:"Message me on WhatsApp",
-    warnArrival:"<b>Trouble on arrival?</b> Call me right away — all contacts are in the <b>Contacts &amp; emergencies</b> section.",
+    warnArrival:"<b>Trouble on arrival?</b> Message me right away — all contacts are in the <b>Contacts &amp; emergencies</b> section.",
     sec02:"Section 02", ttlCasa:"Wi-Fi &amp; home",
     hWifi:"Wi-Fi connection", lblSSID:"Network (SSID)",
     hHome:"How the home works",
@@ -483,7 +481,7 @@ const I18N = {
     btnCall:"Call now", hEmerg:"Emergency numbers",
     em1:"Emergency", em2:"Ambulance", em3:"Fire brigade",
     emergNote:"<b>112</b> is the single European emergency number, free even from a mobile with no credit. After-hours doctor (nights/holidays): 0433 51341. On-duty pharmacy: see the notice at Farmacia San Gallo.",
-    warnFault:"<b>Problems in the home</b> (water, electricity, gas): contact me first at the number above. Meter/valves: [location]."
+    warnFault:"<b>Problems in the home</b> (water, electricity, gas): message me right away."
   },
   de: {
     kicker:"Gäste-Guide",
@@ -510,7 +508,7 @@ const I18N = {
     s4:"<b>Treten Sie ein</b> durch den privaten Eingang. Zweiter Stock. Fahrräder kommen in die Garage.",
     s5:"<b>Sie sind drin!</b> Machen Sie es sich gemütlich. Schreiben Sie mir jederzeit.",
     btnMap:"In Karte öffnen", btnWa:"Auf WhatsApp schreiben",
-    warnArrival:"<b>Probleme bei der Ankunft?</b> Rufen Sie mich sofort an — alle Kontakte finden Sie im Abschnitt <b>Kontakt &amp; Notfälle</b>.",
+    warnArrival:"<b>Probleme bei der Ankunft?</b> Schreiben Sie mir sofort — alle Kontakte finden Sie im Abschnitt <b>Kontakt &amp; Notfälle</b>.",
     sec02:"Abschnitt 02", ttlCasa:"WLAN &amp; Wohnung",
     hWifi:"WLAN-Verbindung", lblSSID:"Netzwerk (SSID)",
     hHome:"Wie die Wohnung funktioniert",
@@ -565,7 +563,7 @@ const I18N = {
     btnCall:"Jetzt anrufen", hEmerg:"Notrufnummern",
     em1:"Notruf", em2:"Krankenwagen", em3:"Feuerwehr",
     emergNote:"Die <b>112</b> ist die einheitliche europäische Notrufnummer, auch vom Handy ohne Guthaben kostenlos. Ärztlicher Notdienst (nachts/feiertags): 0433 51341. Notdienst-Apotheke: Aushang an der Apotheke San Gallo.",
-    warnFault:"<b>Störungen in der Wohnung</b> (Wasser, Strom, Gas): kontaktieren Sie mich zuerst unter der obigen Nummer. Zähler/Ventile: [Ort]."
+    warnFault:"<b>Störungen in der Wohnung</b> (Wasser, Strom, Gas): schreiben Sie mir sofort."
   }
 };
 
@@ -625,10 +623,7 @@ function setLang(lang){
   document.querySelectorAll('.langbar button').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
 }
 (function(){
-  let lang=CONFIG.defaultLang||'en';
-  const b=(navigator.language||'').slice(0,2).toLowerCase();
-  if(b==='it'||b==='de') lang=b;         // se il telefono è in IT o DE, parte in quella lingua
-  setLang(lang);
+  setLang(CONFIG.defaultLang||'en');   // parte sempre in inglese (cambiabile in CONFIG.defaultLang: "it" o "de")
 })();
 
 /* ---------- navigazione a schermate ---------- */
